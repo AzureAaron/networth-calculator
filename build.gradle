@@ -1,0 +1,64 @@
+plugins {
+	id 'java-library'
+	id 'maven-publish'
+}
+
+version = project.version
+group = project.maven_group
+
+repositories {
+	mavenCentral()
+	maven {
+		name = "Minecraft Libraries"
+		url = "https://libraries.minecraft.net"
+	}
+}
+
+dependencies {
+	api "com.mojang:datafixerupper:${project.dfu_version}"
+	compileOnlyApi "org.jetbrains:annotations:${project.annotations_version}"
+}
+
+base {
+	archivesName = project.archives_base_name
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 21
+}
+
+java {
+	withSourcesJar()
+
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
+}
+
+jar {
+	from("LICENSE") {
+		rename { "${it}_${base.archivesName.get()}"}
+	}
+}
+
+// Configure the maven publication
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			groupId = "net.azureaaron"
+			artifactId = "networth-calculator"
+			
+			from components.java
+		}
+	}
+
+	repositories {
+		maven {
+			url = "https://maven.azureaaron.net/" + (System.getenv("NWCALC_RELEASE") != null ? "releases" : "snapshots");
+
+			credentials(PasswordCredentials) {
+				username = System.getenv("AARON_MAVEN_USER");
+				password = System.getenv("AARON_MAVEN_PASS");
+			}
+		}
+	}
+}

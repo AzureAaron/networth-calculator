@@ -1,0 +1,19 @@
+# Ignore everything
+/*
+**/.DS_Store
+
+# Folders
+!/gradle
+!/src
+!/.github
+
+# Files
+!/.gitattributes
+!/.gitignore
+!/build.gradle
+!/gradle.properties
+!/gradlew
+!/gradlew.bat
+!/LICENSE
+!/README.md
+!/settings.gradle
