@@ -52,7 +52,7 @@ public class ItemCalculator {
 		List<Calculation> calculations = new ArrayList<>();
 
 		if (itemId.equals("PET")) {
-			return PetCalculator.calculate(meta.petInfo(), prices, modifiers);
+			return meta.petInfo() != null ? PetCalculator.calculate(meta.petInfo(), prices, modifiers) : NetworthResult.EMPTY;
 		}
 
 		//Runes
@@ -67,6 +67,7 @@ public class ItemCalculator {
 			case "NEW_YEAR_CAKE" -> itemId += "_" + meta.limitedEditionInfo().newYearCakeYear().getAsInt();
 			case "PARTY_HAT_CRAB", "PARTY_HAT_CRAB_ANIMATED", "BALLOON_HAT_2024" -> itemId += "_" + meta.limitedEditionInfo().partyHatColour().get().toUpperCase(Locale.CANADA);
 			case "PARTY_HAT_SLOTH" -> itemId += "_" + meta.limitedEditionInfo().partyHatEmoji().get().toUpperCase(Locale.CANADA);
+			case "ABICASE" -> itemId += "_" + meta.limitedEditionInfo().abicaseModel().get().toUpperCase(Locale.CANADA);
 		}
 
 		//Shiny Items (Cosmetic Effect)

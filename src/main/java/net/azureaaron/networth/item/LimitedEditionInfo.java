@@ -14,10 +14,11 @@ import net.azureaaron.networth.utils.CodecUtils;
  * Contains metadata about limited edition items such as party hats, and new year cakes.
  */
 @ApiStatus.Internal
-public record LimitedEditionInfo(OptionalInt newYearCakeYear, Optional<String> partyHatColour, Optional<String> partyHatEmoji) {
+public record LimitedEditionInfo(OptionalInt newYearCakeYear, Optional<String> partyHatColour, Optional<String> partyHatEmoji,  Optional<String> abicaseModel) {
 	static final Codec<LimitedEditionInfo> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 			CodecUtils.optionalInt(Codec.INT.optionalFieldOf("new_years_cake")).forGetter(LimitedEditionInfo::newYearCakeYear),
 			Codec.STRING.optionalFieldOf("party_hat_color").forGetter(LimitedEditionInfo::partyHatColour),
-			Codec.STRING.optionalFieldOf("party_hat_emoji").forGetter(LimitedEditionInfo::partyHatEmoji))
+			Codec.STRING.optionalFieldOf("party_hat_emoji").forGetter(LimitedEditionInfo::partyHatEmoji),
+			Codec.STRING.optionalFieldOf("model").forGetter(LimitedEditionInfo::abicaseModel))
 			.apply(instance, LimitedEditionInfo::new));
 }

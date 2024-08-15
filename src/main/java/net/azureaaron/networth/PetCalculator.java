@@ -20,7 +20,9 @@ public class PetCalculator {
 	 * 
 	 * @return a {@link NetworthResult} instance describing the item's value and the calculations performed.
 	 * 
-	 * @see {@link ItemCalculator#calculate(net.azureaaron.networth.item.SkyblockItemStack, ToDoubleFunction, List, ModifierValues)}
+	 * @see {@link ItemCalculator#calculate(net.azureaaron.networth.item.SkyblockItemStack, ToDoubleFunction, it.unimi.dsi.fastutil.objects.Object2ObjectMap, ModifierValues)}
+	 * 
+	 * @apiNote All method parameters passed in must be non-null.
 	 */
 	public static NetworthResult calculate(PetInfo info, ToDoubleFunction<String> prices, ModifierValues modifiers) {
 		double lvl1 = prices.applyAsDouble("LVL_1_" + info.tier() + "_" + info.type());
