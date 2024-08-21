@@ -67,7 +67,9 @@ public class ItemCalculator {
 			case "NEW_YEAR_CAKE" -> itemId += "_" + meta.limitedEditionInfo().newYearCakeYear().getAsInt();
 			case "PARTY_HAT_CRAB", "PARTY_HAT_CRAB_ANIMATED", "BALLOON_HAT_2024" -> itemId += "_" + meta.limitedEditionInfo().partyHatColour().get().toUpperCase(Locale.CANADA);
 			case "PARTY_HAT_SLOTH" -> itemId += "_" + meta.limitedEditionInfo().partyHatEmoji().get().toUpperCase(Locale.CANADA);
-			case "ABICASE" -> itemId += "_" + meta.limitedEditionInfo().abicaseModel().get().toUpperCase(Locale.CANADA);
+			case String s when s.equals("ABICASE") && meta.limitedEditionInfo().abicaseModel().isPresent() -> itemId += "_" + meta.limitedEditionInfo().abicaseModel().get().toUpperCase(Locale.CANADA);
+
+			default -> {} //Do Nothing
 		}
 
 		//Shiny Items (Cosmetic Effect)
