@@ -16,6 +16,8 @@ import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import it.unimi.dsi.fastutil.objects.ObjectSet;
 
 public interface ItemConstants {
+	Set<String> COLOURED_ANNIVERSARY_ITEMS = Set.of("PARTY_HAT_CRAB", "PARTY_HAT_CRAB_ANIMATED", "BALLOON_HAT_2024");
+
 	int PICKONIMBUS_DURABILITY = 5000;
 
 	Map<String, Set<String>> BLOCKED_ENCHANTMENTS = Map.of(

@@ -51,6 +51,7 @@ public class ItemCalculator {
 		ItemMetadata meta = stack.metadata();
 		List<Calculation> calculations = new ArrayList<>();
 
+		//Pet Items
 		if (itemId.equals("PET")) {
 			return meta.petInfo() != null ? PetCalculator.calculate(meta.petInfo(), prices, modifiers) : NetworthResult.EMPTY;
 		}
@@ -64,9 +65,9 @@ public class ItemCalculator {
 
 		//Limited Edition Items
 		switch (itemId) {
-			case "NEW_YEAR_CAKE" -> itemId += "_" + meta.limitedEditionInfo().newYearCakeYear().getAsInt();
-			case "PARTY_HAT_CRAB", "PARTY_HAT_CRAB_ANIMATED", "BALLOON_HAT_2024" -> itemId += "_" + meta.limitedEditionInfo().partyHatColour().get().toUpperCase(Locale.CANADA);
-			case "PARTY_HAT_SLOTH" -> itemId += "_" + meta.limitedEditionInfo().partyHatEmoji().get().toUpperCase(Locale.CANADA);
+			case String s when s.equals("NEW_YEAR_CAKE") && meta.limitedEditionInfo().newYearCakeYear().isPresent() -> itemId += "_" + meta.limitedEditionInfo().newYearCakeYear().getAsInt();
+			case String s when ItemConstants.COLOURED_ANNIVERSARY_ITEMS.contains(s) && meta.limitedEditionInfo().partyHatColour().isPresent() -> itemId += "_" + meta.limitedEditionInfo().partyHatColour().get().toUpperCase(Locale.CANADA);
+			case String s when s.equals("PARTY_HAT_SLOTH") && meta.limitedEditionInfo().partyHatEmoji().isPresent() -> itemId += "_" + meta.limitedEditionInfo().partyHatEmoji().get().toUpperCase(Locale.CANADA);
 			case String s when s.equals("ABICASE") && meta.limitedEditionInfo().abicaseModel().isPresent() -> itemId += "_" + meta.limitedEditionInfo().abicaseModel().get().toUpperCase(Locale.CANADA);
 
 			default -> {} //Do Nothing
