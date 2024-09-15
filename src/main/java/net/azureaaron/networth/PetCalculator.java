@@ -78,7 +78,7 @@ public class PetCalculator {
 		int maxPetXpFromCandy = info.candies() * 1_000_000;
 		double xpWithoutCandy = info.xp() - maxPetXpFromCandy;
 
-		if (info.candies() > 0 && !PetConstants.BLOCKED_CANDY_REDUCTION_PETS.contains(info.type()) && xpWithoutCandy >= maxXp) {
+		if (info.candies() > 0 && !PetConstants.BLOCKED_CANDY_REDUCTION_PETS.contains(info.type()) && xpWithoutCandy < maxXp) {
 			double reducedValue = price * modifiers.regular().getDouble("petCandy");
 
 			price = Math.max(reducedValue, price - (level == 100 ? 5_000_000 : 2_500_000));
