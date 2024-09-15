@@ -200,7 +200,7 @@ public class ItemCalculator {
 				if (ItemConstants.STACKING_ENCHANTMENTS.contains(enchantmentId)) level = 1;
 
 				//Add Silex price
-				if (enchantmentId.equals("EFFICIENCY") && level > 5 && !ItemConstants.IGNORE_SILEX.contains(enchantmentId)) {
+				if (enchantmentId.equals("EFFICIENCY") && level > 5 && !ItemConstants.IGNORE_SILEX.contains(itemId)) {
 					int silexes = level - (itemId.equals("STONK_PICKAXE") ? 6 : 5);
 
 					if (silexes > 0) {
