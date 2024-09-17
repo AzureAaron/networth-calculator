@@ -10,6 +10,7 @@ import java.util.stream.DoubleStream;
 import com.mojang.datafixers.util.Either;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import it.unimi.dsi.fastutil.objects.Object2IntMaps;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import net.azureaaron.networth.Calculation.Type;
 import net.azureaaron.networth.data.ModifierValues;
@@ -166,7 +167,7 @@ public class ItemCalculator {
 			} else { //Multiple Enchant Book
 				double enchantmentsPrice = 0;
 
-				for (Object2IntMap.Entry<String> entry : meta.enchantments().object2IntEntrySet()) {
+				for (Object2IntMap.Entry<String> entry : Object2IntMaps.fastIterable(meta.enchantments())) {
 					String enchantmentApiName = entry.getKey().toUpperCase(Locale.CANADA) + "_" + entry.getIntValue();
 					Calculation calculation = Calculation.of(Type.ENCHANTMENT, enchantmentApiName, prices.applyAsDouble("ENCHANTMENT_" + enchantmentApiName) * modifiers.regular().getDouble("enchantments"));
 					enchantmentsPrice += calculation.price();
@@ -188,7 +189,7 @@ public class ItemCalculator {
 
 		//Regular Enchanted Items
 		if (!meta.enchantments().isEmpty() && !itemId.equals("ENCHANTED_BOOK")) {
-			for (Object2IntMap.Entry<String> entry : meta.enchantments().object2IntEntrySet()) {
+			for (Object2IntMap.Entry<String> entry : Object2IntMaps.fastIterable(meta.enchantments())) {
 				String enchantmentId = entry.getKey().toUpperCase(Locale.CANADA);
 				int level = entry.getIntValue();
 
@@ -241,7 +242,7 @@ public class ItemCalculator {
 
 		//Attributes
 		if (!meta.attributes().isEmpty()) {
-			for (Object2IntMap.Entry<String> entry : meta.attributes().object2IntEntrySet()) {
+			for (Object2IntMap.Entry<String> entry : Object2IntMaps.fastIterable(meta.attributes())) {
 				String attribute = entry.getKey().toUpperCase(Locale.CANADA);
 				int tier = entry.getIntValue();
 
