@@ -31,7 +31,7 @@ public interface ItemConstants {
 	Object2IntMap<String> IGNORED_ENCHANTMENTS = Object2IntMaps.unmodifiable(Utils.make(new Object2IntOpenHashMap<>(), map -> map.put("SCAVENGER", 5)));
 	Set<String> STACKING_ENCHANTMENTS = Set.of("EXPERTISE", "COMPACT", "CULTIVATING", "CHAMPION", "HECATOMB", "TOXOPHILITE");
 
-	Set<String> IGNORE_SILEX = Set.of("PROMISING_SPADE");
+	Set<String> IGNORE_SILEX = Set.of("PROMISING_SPADE", "STONK_PICKAXE");
 
 	Map<String, String> ATTRIBUTE_BASE_COSTS = Map.of(
 			"GLOWSTONE_GAUNTLET", "GLOWSTONE_GAUNTLET",

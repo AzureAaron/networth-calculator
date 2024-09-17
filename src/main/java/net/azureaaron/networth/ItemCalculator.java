@@ -201,7 +201,7 @@ public class ItemCalculator {
 
 				//Add Silex price
 				if (enchantmentId.equals("EFFICIENCY") && level > 5 && !ItemConstants.IGNORE_SILEX.contains(itemId)) {
-					int silexes = level - (itemId.equals("STONK_PICKAXE") ? 6 : 5);
+					int silexes = level - 5;
 
 					if (silexes > 0) {
 						Calculation calculation = Calculation.of(Type.SILEX, "SIL_EX", prices.applyAsDouble("SIL_EX") * silexes * modifiers.regular().getDouble("silex"), silexes);
