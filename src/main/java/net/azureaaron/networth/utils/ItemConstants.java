@@ -18,7 +18,7 @@ import it.unimi.dsi.fastutil.objects.ObjectSet;
 public interface ItemConstants {
 	Set<String> COLOURED_ANNIVERSARY_ITEMS = Set.of("PARTY_HAT_CRAB", "PARTY_HAT_CRAB_ANIMATED", "BALLOON_HAT_2024");
 
-	int PICKONIMBUS_DURABILITY = 5000;
+	int PICKONIMBUS_DURABILITY = 2000;
 
 	Map<String, Set<String>> BLOCKED_ENCHANTMENTS = Map.of(
 			"BONE_BOOMERANG", Set.of("OVERLOAD", "POWER", "ULTIMATE_SOUL_EATER"),
@@ -76,10 +76,11 @@ public interface ItemConstants {
 			"TALISMAN_ENRICHMENT_WALK_SPEED");
 
 	Object2ObjectMap<String, String> REFORGES = Object2ObjectMaps.unmodifiable(Utils.make(new Object2ObjectOpenHashMap<>(), map -> {
-		//Low Reforge Stones
+		//Page 1
 		map.put("stiff", "HARDENED_WOOD");
 		map.put("salty", "SALT_CUBE");
 		map.put("aote_stone", "AOTE_STONE");
+		map.put("blazing", "BLAZEN_SPHERE");
 		map.put("waxed", "BLAZE_WAX");
 		map.put("rooted", "BURROWING_SPORES");
 		map.put("candied", "CANDY_CORN");
@@ -87,9 +88,11 @@ public interface ItemConstants {
 		map.put("fleet", "DIAMONITE");
 		map.put("fabled", "DRAGON_CLAW");
 		map.put("spiked", "DRAGON_SCALE");
+		map.put("royal", "DWARVEN_TREASURE");
 		map.put("hyper", "ENDSTONE_GEODE");
 		map.put("coldfusion", "ENTROPY_SUPPRESSOR");
 		map.put("blooming", "FLOWERING_BOUQUET");
+		map.put("fanged", "FULL_JAW_FANGED_KIT");
 		map.put("jaded", "JADERALD");
 		map.put("jerry", "JERRY_STONE");
 		map.put("magnetic", "LAPIS_CRYSTAL");
@@ -98,45 +101,51 @@ public interface ItemConstants {
 		map.put("gilded", "MIDAS_JEWEL");
 		map.put("cubic", "MOLTEN_CUBE");
 		map.put("necrotic", "NECROMANCER_BROOCH");
-		map.put("fruitful", "ONYX");
+		map.put("fruitful", "ONYX"); //Black Diamond
 		map.put("precise", "OPTICAL_LENS");
 		map.put("mossy", "OVERGROWN_GRASS");
 		map.put("pitchin", "PITCHIN_KOI");
+
+		//Page 2
 		map.put("undead", "PREMIUM_FLESH");
+		map.put("blood_soaked", "PRESUMED_GALLON_OF_RED_PAINT");
 		map.put("mithraic", "PURE_MITHRIL");
 		map.put("reinforced", "RARE_DIAMOND");
 		map.put("ridiculous", "RED_NOSE");
 		map.put("loving", "RED_SCARF");
-		map.put("auspicious", "ROCK_GEMSTONE");
+		map.put("auspicious", "ROCK_GEMSTONE"); //Dwarven Geode
 		map.put("treacherous", "RUSTY_ANCHOR");
-		map.put("headstrong", "SALMON_OPAL");
+		map.put("headstrong", "SALMON_OPAL"); //Kaleidoscopic Mineral
 		map.put("strengthened", "SEARING_STONE");
 		map.put("glistening", "SHINY_PRISM");
 		map.put("bustling", "SKYMART_BROCHURE");
 		map.put("spiritual", "SPIRIT_DECOY");
 		map.put("suspicious", "SUSPICIOUS_VIAL");
-		map.put("fanged", "FULL_JAW_FANGED_KIT");
-		map.put("blood_soaked", "PRESUMED_GALLON_OF_RED_PAINT");
 		map.put("snowy", "TERRY_SNOWGLOBE");
-
-		//High Reforge Stones
+		map.put("dimensional", "TITANIUM_TESSERACT"); //FIXME Guessed at the id
 		map.put("ambered", "AMBER_MATERIAL");
+		map.put("beady", "BEADY_EYES");
 		map.put("blessed", "BLESSED_FRUIT");
 		map.put("bulky", "BULKY_STONE");
+		map.put("buzzing", "CLIPPED_WINGS");
 		map.put("submerged", "DEEP_SEA_ORB");
 		map.put("renowned", "DRAGON_HORN");
+		map.put("festive", "FROZEN_BAUBLE");
 		map.put("giant", "GIANT_TOOTH");
 		map.put("lustrous", "GLEAMING_CRYSTAL");
 		map.put("bountiful", "GOLDEN_BALL");
 		map.put("chomp", "KUUDRA_MANDIBLE");
+
+		//Page 3
 		map.put("lucky", "LUCKY_DICE");
 		map.put("stellar", "PETRIFIED_STARFALL");
+		map.put("scraped", "POCKET_ICEBERG");
 		map.put("ancient", "PRECURSOR_GEAR");
-		map.put("refined", "REFINED_AMBER");
+		map.put("refined", "REFINED_AMBER"); //Andesite Whetstone
 		map.put("empowered", "SADAN_BROOCH");
 		map.put("withered", "WITHER_BLOOD");
-		map.put("heated", "HOT_STUFF");
-		map.put("festive", "FROZEN_BAUBLE");
+		map.put("glacial", "FRIGID_HUSK");
+		map.put("heated", "HOT_STUFF"); //Scorched Topaz
 
 		//Non Bazaar
 		map.put("dirty", "DIRT_BOTTLE");
