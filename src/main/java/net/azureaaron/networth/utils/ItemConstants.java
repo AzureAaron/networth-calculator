@@ -122,7 +122,7 @@ public interface ItemConstants {
 		map.put("spiritual", "SPIRIT_DECOY");
 		map.put("suspicious", "SUSPICIOUS_VIAL");
 		map.put("snowy", "TERRY_SNOWGLOBE");
-		map.put("dimensional", "TITANIUM_TESSERACT"); //FIXME Guessed at the id
+		map.put("dimensional", "TITANIUM_TESSERACT");
 		map.put("ambered", "AMBER_MATERIAL");
 		map.put("beady", "BEADY_EYES");
 		map.put("blessed", "BLESSED_FRUIT");
@@ -151,6 +151,7 @@ public interface ItemConstants {
 		map.put("dirty", "DIRT_BOTTLE");
 		map.put("moil", "MOIL_LOG");
 		map.put("toil", "TOIL_LOG");
+		map.put("greater_spook", "BOO_STONE");
 	}));
 
 	Set<String> GEMSTONE_GROUP_SLOT_TYPES = Set.of("COMBAT", "OFFENSIVE", "DEFENSIVE", "MINING", "UNIVERSAL", "CHISEL");
