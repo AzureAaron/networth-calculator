@@ -25,6 +25,8 @@ public class PetCalculator {
 	 * @apiNote All method parameters passed in must be non-null.
 	 */
 	public static NetworthResult calculate(PetInfo info, ToDoubleFunction<String> prices, ModifierValues modifiers) {
+		if (info.equals(PetInfo.EMPTY)) return NetworthResult.EMPTY;
+
 		double lvl1 = prices.applyAsDouble("LVL_1_" + info.tier() + "_" + info.type());
 		double lvl100 = prices.applyAsDouble("LVL_100_" + info.tier() + "_" + info.type());
 		double lvl200 = prices.applyAsDouble("LVL_200_" + info.tier() + "_" + info.type());

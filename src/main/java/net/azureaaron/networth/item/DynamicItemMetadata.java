@@ -39,7 +39,9 @@ record DynamicItemMetadata(Object2IntMap<String> enchantments, int rarityUpgrade
 		MiscModifiers miscModifiers = MiscModifiers.CODEC.parse(customData).getOrThrow();
 		AccessoryUpgrades accessoryUpgrades = AccessoryUpgrades.CODEC.parse(customData).getOrThrow();
 		Cosmetics cosmetics = Cosmetics.CODEC.parse(customData).getOrThrow();
-		PetInfo petInfo = Utils.transform(customData.get("petInfo").asString(""), petInfoJson -> !petInfoJson.isEmpty() ? PetInfo.CODEC.parse(JsonOps.INSTANCE, JsonParser.parseString(petInfoJson)).getOrThrow() : null);
+		PetInfo petInfo = Utils.transform(customData.get("petInfo").asString(""), petInfoJson -> !petInfoJson.isEmpty() ? PetInfo.CODEC.parse(JsonOps.INSTANCE, JsonParser.parseString(petInfoJson))
+				.setPartial(PetInfo.EMPTY)
+				.getPartialOrThrow() : null);
 		LimitedEditionInfo limitedEditionInfo = LimitedEditionInfo.CODEC.parse(customData).getOrThrow();
 		IntList cakeBagCakeYears = retriever.cakeBagCakeYears();
 

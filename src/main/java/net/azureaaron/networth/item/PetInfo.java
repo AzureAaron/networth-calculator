@@ -14,4 +14,8 @@ public record PetInfo(String type, double xp, String tier, int candies, Optional
 			Codec.STRING.optionalFieldOf("heldItem").forGetter(PetInfo::heldItem),
 			Codec.STRING.optionalFieldOf("skin").forGetter(PetInfo::skin))
 			.apply(instance, PetInfo::new));
+	/**
+	 * Provides for a fallback {code PetInfo} instance for deserialization failures.
+	 */
+	public static final PetInfo EMPTY = new PetInfo("", 0, "", 0, Optional.empty(), Optional.empty());
 }
