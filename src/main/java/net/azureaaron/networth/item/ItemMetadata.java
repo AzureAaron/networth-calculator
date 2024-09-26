@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.jetbrains.annotations.ApiStatus;
-import org.jetbrains.annotations.Nullable;
 
 import com.mojang.datafixers.util.Either;
 
@@ -49,7 +48,6 @@ public sealed interface ItemMetadata permits DynamicItemMetadata {
 
 	Cosmetics cosmetics();
 
-	@Nullable
 	PetInfo petInfo();
 
 	LimitedEditionInfo limitedEditionInfo();

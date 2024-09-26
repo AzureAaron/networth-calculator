@@ -54,7 +54,7 @@ public class ItemCalculator {
 
 		//Pet Items
 		if (itemId.equals("PET")) {
-			return meta.petInfo() != null ? PetCalculator.calculate(meta.petInfo(), prices, modifiers) : NetworthResult.EMPTY;
+			return PetCalculator.calculate(meta.petInfo(), prices, modifiers);
 		}
 
 		//Runes

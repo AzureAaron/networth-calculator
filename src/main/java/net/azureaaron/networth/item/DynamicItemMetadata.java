@@ -3,6 +3,7 @@ package net.azureaaron.networth.item;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
 
 import org.jetbrains.annotations.ApiStatus;
 
@@ -15,7 +16,6 @@ import com.mojang.serialization.JsonOps;
 import it.unimi.dsi.fastutil.ints.IntList;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.azureaaron.networth.utils.CodecUtils;
-import net.azureaaron.networth.utils.Utils;
 
 @ApiStatus.Internal
 record DynamicItemMetadata(Object2IntMap<String> enchantments, int rarityUpgrades, Optional<String> reforge, int upgradeLevel, DungeonUpgrades dungeonUpgrades,
@@ -23,11 +23,13 @@ record DynamicItemMetadata(Object2IntMap<String> enchantments, int rarityUpgrade
 		AuctionBidInfo auctionBidInfo, MiscModifiers miscModifiers, AccessoryUpgrades accessoryUpgrades, Cosmetics cosmetics, PetInfo petInfo,
 		LimitedEditionInfo limitedEditionInfo, IntList cakeBagCakeYears) implements ItemMetadata {
 	private static final Codec<Object2IntMap<String>> OBJECT_2_INT_MAP_CODEC = CodecUtils.createObject2IntMapCodec(Codec.STRING);
+	private static final Function<Dynamic<?>, String> STRING_MAPPER = dynamic -> dynamic.asString("");
 
 	static DynamicItemMetadata of(Dynamic<?> customData, ItemMetadataRetriever retriever) {
+		//TODO Add an EMPTY state for each record and use that as a partial if all else fails, perhaps setup some logging for it too
 		Object2IntMap<String> enchantments = OBJECT_2_INT_MAP_CODEC.parse(customData.get("enchantments").orElseEmptyMap()).getOrThrow();
 		int rarityUpgrades = customData.get("rarity_upgrades").asInt(0);
-		Optional<String> reforge = Utils.transform(customData.get("modifier").asString(""), reforge1 -> !reforge1.isEmpty() ? Optional.of(reforge1) : Optional.empty());
+		Optional<String> reforge = customData.get("modifier").result().map(STRING_MAPPER);
 		int upgradeLevel = customData.get("upgrade_level").asInt(0);
 		DungeonUpgrades dungeonUpgrades = DungeonUpgrades.CODEC.parse(customData).getOrThrow();
 		GearUpgrades gearUpgrades = GearUpgrades.CODEC.parse(customData).getOrThrow();
@@ -39,9 +41,11 @@ record DynamicItemMetadata(Object2IntMap<String> enchantments, int rarityUpgrade
 		MiscModifiers miscModifiers = MiscModifiers.CODEC.parse(customData).getOrThrow();
 		AccessoryUpgrades accessoryUpgrades = AccessoryUpgrades.CODEC.parse(customData).getOrThrow();
 		Cosmetics cosmetics = Cosmetics.CODEC.parse(customData).getOrThrow();
-		PetInfo petInfo = Utils.transform(customData.get("petInfo").asString(""), petInfoJson -> !petInfoJson.isEmpty() ? PetInfo.CODEC.parse(JsonOps.INSTANCE, JsonParser.parseString(petInfoJson))
-				.setPartial(PetInfo.EMPTY)
-				.getPartialOrThrow() : null);
+		PetInfo petInfo = customData.get("petInfo").result()
+				//NB: The petInfo field is expected to be JSON if its present
+				.map(petInfoJsonDynamic -> PetInfo.CODEC.parse(JsonOps.INSTANCE, JsonParser.parseString(petInfoJsonDynamic.asString("")))
+						.setPartial(PetInfo.EMPTY)
+						.getPartialOrThrow()).orElse(PetInfo.EMPTY);
 		LimitedEditionInfo limitedEditionInfo = LimitedEditionInfo.CODEC.parse(customData).getOrThrow();
 		IntList cakeBagCakeYears = retriever.cakeBagCakeYears();
 
