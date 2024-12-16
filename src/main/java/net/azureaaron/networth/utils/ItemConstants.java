@@ -60,7 +60,8 @@ public interface ItemConstants {
 			"ICE_SKATES_RUNE_3",
 			"BARK_TUNES_RUNE_3",
 			"SMITTEN_RUNE_3",
-			"RAINY_DAY_RUNE_3");
+			"RAINY_DAY_RUNE_3",
+			"SUPER_PUMPKIN_RUNE_3");
 
 	Set<String> ENRICHMENTS = Set.of(
 			"TALISMAN_ENRICHMENT_ATTACK_SPEED",
